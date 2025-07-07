@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FamilyVet Clinic | Compassionate Pet Care</title>
+        <!-- Chosen Palette: Professional Blue & White -->
+        <!-- Application Structure Plan: The application is structured as a single, vertically-scrolling landing page. This design was chosen for its simplicity and universal user understanding, guiding the user through a logical narrative flow. It starts with a strong first impression and call-to-action (Hero & Appointment Form), moves to detailing the clinic's value proposition (Services), builds trust (Testimonials & Feedback), and concludes with actionable information (Contact/Map). Navigation is facilitated by a sticky header with anchor links, allowing both linear exploration and direct access to specific information, which is the most effective structure for converting a service-based 'report' like the PRD into a user-centric web experience. -->
+        <!-- Visualization & Content Choices: 
+        - Report Info: Clinic contact info -> Goal: Inform -> Presentation: Text in multiple locations (top bar, footer) -> Interaction: None -> Justification: High visibility for key information.
+        - Report Info: Service list & prices -> Goal: Inform/Compare -> Presentation: Grid of styled cards (HTML/Tailwind) -> Interaction: Hover animations -> Justification: Easily scannable, visually separates distinct offerings.
+        - Report Info: Appointment booking -> Goal: Convert -> Presentation: HTML Form -> Interaction: JS validation and submission feedback -> Justification: Standard, effective method for lead capture.
+        - Report Info: Testimonials -> Goal: Build Trust -> Presentation: Grid of styled blockquotes -> Interaction: None -> Justification: Social proof is best presented as clear, easy-to-read quotes.
+        - Report Info: Location -> Goal: Inform/Action -> Presentation: Embedded map iframe -> Interaction: Native map controls -> Justification: Provides interactive, familiar location finding without custom JS.
+        - Library/Method: Vanilla JS for interactions, Tailwind CSS for styling.
+    -->
+        <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet">
+        <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+    </head>
+    <body class="bg-white text-gray-800">
+
+        <!-- Top Bar -->
+        <header class="bg-blue-800 text-white py-2 px-4 md:px-8 text-sm">
+            <div
+                class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-2 md:mb-0">
+                    <span>📞 +251912342935</span>
+                    <span class="hidden md:inline-block">|</span>
+                    <span>📍 Oromia, Adama, Ganda Gara</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#"
+                        class="hover:text-blue-200 transition-colors duration-200"
+                        aria-label="Facebook">F</a>
+                    <a href="#"
+                        class="hover:text-blue-200 transition-colors duration-200"
+                        aria-label="Twitter">T</a>
+                    <a href="#"
+                        class="hover:text-blue-200 transition-colors duration-200"
+                        aria-label="Instagram">I</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Navigation -->
+        <nav id="main-nav"
+            class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md py-4 px-4 md:px-8">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="#home" class="text-2xl font-bold text-blue-800">
+                    FamilyVet Clinic
+                </a>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="#home"
+                            class="nav-link text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Home</a></li>
+                    <li><a href="#services"
+                            class="nav-link text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Services</a></li>
+                    <li><a href="#testimonials"
+                            class="nav-link text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Testimonials</a></li>
+                    <li><a href="#contact"
+                            class="nav-link text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="home"
+                class="relative bg-gradient-to-r from-blue-50 to-blue-100 py-20 md:py-24">
+                <div
+                    class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
+                    <div class="lg:w-1/2 text-center lg:text-left z-10">
+                        <h1
+                            class="text-4xl md:text-5xl font-extrabold text-blue-900 leading-tight mb-4">
+                            Caring for Your Beloved Pets with Compassion
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-700 mb-8">
+                            This section introduces our clinic and provides a
+                            direct way to schedule a visit. We aim to be your
+                            trusted partner in pet health, offering
+                            comprehensive and compassionate veterinary care for
+                            your furry family members.
+                        </p>
+                        <a href="#contact"
+                            class="nav-link bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-block">
+                            Learn More & Book
+                        </a>
+                    </div>
+
+                    <div
+                        class="lg:w-1/2 w-full max-w-lg bg-white p-8 rounded-xl shadow-2xl border border-blue-200 z-10">
+                        <h2
+                            class="text-3xl font-bold text-blue-800 mb-6 text-center">Book
+                            Your Visit</h2>
+                        <form id="appointment-form" class="space-y-5"
+                            novalidate>
+                            <div>
+                                <label for="name"
+                                    class="block text-gray-700 text-sm font-semibold mb-2">Name</label>
+                                <input type="text" id="name" name="name"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="phone"
+                                    class="block text-gray-700 text-sm font-semibold mb-2">Phone</label>
+                                <input type="tel" id="phone" name="phone"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="email"
+                                    class="block text-gray-700 text-sm font-semibold mb-2">Email</label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                                    required>
+                            </div>
+                            <div>
+                                <label for="message"
+                                    class="block text-gray-700 text-sm font-semibold mb-2">Message
+                                    (Optional)</label>
+                                <textarea id="message" name="message" rows="3"
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                                Send Appointment Request
+                            </button>
+                            <div id="form-status"
+                                class="text-center mt-2 h-5"></div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="py-16 md:py-24 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 md:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-extrabold text-blue-800">Our
+                            Services</h2>
+                        <p
+                            class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Here
+                            you can explore the comprehensive range of services
+                            we provide. From routine check-ups to advanced
+                            procedures, each service is delivered with the
+                            utmost care and professionalism, with transparent
+                            pricing to help you make informed decisions.</p>
+                    </div>
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div
+                            class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform hover:-translate-y-2 transition-transform duration-300">
+                            <h3
+                                class="text-2xl font-bold text-blue-700 mb-4">Preventative
+                                Care</h3>
+                            <p class="text-gray-600 mb-4">Routine check-ups,
+                                vaccinations, parasite control, and nutritional
+                                counseling.</p>
+                            <p class="text-blue-600 font-semibold">Starting from
+                                $50</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform hover:-translate-y-2 transition-transform duration-300">
+                            <h3
+                                class="text-2xl font-bold text-blue-700 mb-4">Diagnostic
+                                Services</h3>
+                            <p class="text-gray-600 mb-4">In-house lab tests,
+                                X-rays, and ultrasound to accurately diagnose
+                                conditions.</p>
+                            <p class="text-blue-600 font-semibold">Starting from
+                                $80</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform hover:-translate-y-2 transition-transform duration-300">
+                            <h3
+                                class="text-2xl font-bold text-blue-700 mb-4">Surgical
+                                Procedures</h3>
+                            <p class="text-gray-600 mb-4">Spaying/neutering,
+                                soft tissue surgery, and emergency
+                                procedures.</p>
+                            <p class="text-blue-600 font-semibold">Starting from
+                                $200</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform hover:-translate-y-2 transition-transform duration-300">
+                            <h3
+                                class="text-2xl font-bold text-blue-700 mb-4">Dental
+                                Care</h3>
+                            <p class="text-gray-600 mb-4">Professional
+                                cleanings, extractions, and oral health
+                                assessments.</p>
+                            <p class="text-blue-600 font-semibold">Starting from
+                                $150</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform hover:-translate-y-2 transition-transform duration-300">
+                            <h3
+                                class="text-2xl font-bold text-blue-700 mb-4">Emergency
+                                Care</h3>
+                            <p class="text-gray-600 mb-4">Urgent medical
+                                attention for accidents and illnesses during
+                                clinic hours.</p>
+                            <p class="text-blue-600 font-semibold">Please call
+                                for pricing</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-xl shadow-lg border border-blue-100 transform hover:-translate-y-2 transition-transform duration-300">
+                            <h3
+                                class="text-2xl font-bold text-blue-700 mb-4">Pharmacy
+                                & Retail</h3>
+                            <p class="text-gray-600 mb-4">On-site pharmacy for
+                                medications, prescription diets, and pet
+                                supplies.</p>
+                            <p class="text-blue-600 font-semibold">Varies by
+                                product</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonial Section -->
+            <section id="testimonials" class="py-16 md:py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 md:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-extrabold text-blue-800">What
+                            Our Clients Say</h2>
+                        <p
+                            class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">We
+                            believe trust is built on experience. In this
+                            section, you can read real feedback from fellow pet
+                            owners about the care and service we provide. These
+                            testimonials reflect our commitment to excellence
+                            and the strong bonds we form with our clients and
+                            their pets.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div
+                            class="bg-blue-50 p-8 rounded-xl border border-blue-200">
+                            <p
+                                class="text-gray-700 italic text-lg mb-4">"The staff are incredibly kind and knowledgeable. They took such great care of my dog, Max. I wouldn't trust anyone else with his health!"</p>
+                            <p class="text-blue-600 font-bold">- Sarah L.</p>
+                        </div>
+                        <div
+                            class="bg-blue-50 p-8 rounded-xl border border-blue-200">
+                            <p
+                                class="text-gray-700 italic text-lg mb-4">"We've been bringing our cats here for years. The vets are thorough, and they always take the time to answer all our questions."</p>
+                            <p class="text-blue-600 font-bold">- John P.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feedback Section -->
+            <section id="feedback" class="py-16 md:py-24 bg-gray-50">
+                <div class="max-w-4xl mx-auto px-4 md:px-8 text-center">
+                    <h2 class="text-4xl font-extrabold text-blue-800 mb-8">Share
+                        Your Experience</h2>
+                    <p class="text-lg text-gray-700 mb-8 mx-auto">Your feedback
+                        is invaluable to us. It helps us understand what we're
+                        doing right and where we can improve. By sharing your
+                        experience, you help us enhance our services for the
+                        entire community of pet lovers we serve.</p>
+                    <a href="#"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 inline-block">
+                        Leave a Review on Google
+                    </a>
+                </div>
+            </section>
+
+            <!-- Map & Contact Section -->
+            <section id="contact" class="py-16 md:py-24 bg-white">
+                <div class="max-w-7xl mx-auto px-4 md:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl font-extrabold text-blue-800">Find
+                            Us</h2>
+                        <p
+                            class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">This
+                            final section provides our physical location for
+                            your visit. The interactive map below will help you
+                            get directions to our clinic. We look forward to
+                            welcoming you and your pet!</p>
+                    </div>
+                    <div
+                        class="rounded-xl overflow-hidden shadow-2xl border border-blue-200">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Oromia,%20Adama,%20Ganda%20Gara&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                            width="100%"
+                            height="450"
+                            style="border:0;"
+                            allowfullscreen
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Clinic Location Map">
+                        </iframe>
+                    </div>
+                    <div class="text-center mt-8 text-lg text-gray-700">
+                        <p class="font-semibold text-blue-800">Our Address:</p>
+                        <p>Oromia, Adama, Ganda Gara</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-blue-900 text-white py-8 px-4 md:px-8">
+            <div class="max-w-7xl mx-auto text-center text-blue-200">
+                <p>&copy; 2024 FamilyVet Clinic. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Sticky Bottom Bar -->
+        <div
+            class="fixed bottom-0 left-0 w-full bg-blue-700/95 backdrop-blur-sm text-white py-3 px-4 md:px-8 shadow-lg z-40">
+            <div
+                class="max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center text-center md:text-left">
+                <span class="text-lg font-bold mb-1 md:mb-0 md:mr-4">Call to
+                    make an appointment:</span>
+                <a href="tel:+251912342935" class="text-lg hover:underline">📞
+                    +251912342935</a>
+            </div>
+        </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('a.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Form handling
+            const form = document.getElementById('appointment-form');
+            const formStatus = document.getElementById('form-status');
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Basic validation
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+
+                if (!name || !phone || !email) {
+                    formStatus.textContent = 'Please fill all required fields.';
+                    formStatus.className = 'text-red-600 text-center mt-2 h-5';
+                    return;
+                }
+                
+                // Simulate submission
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                formStatus.textContent = '';
+
+                setTimeout(() => {
+                    // Simulate success
+                    formStatus.textContent = 'Request sent successfully! We will call you back.';
+                    formStatus.className = 'text-green-600 text-center mt-2 h-5';
+                    form.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Appointment Request';
+
+                    // Clear status message after a few seconds
+                    setTimeout(() => {
+                        formStatus.textContent = '';
+                    }, 5000);
+
+                }, 1500); // Simulate network delay
+            });
+        });
+    </script>
+    </body>
+</html>
